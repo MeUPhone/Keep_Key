@@ -1,0 +1,32 @@
+CREATE TABLE User_Key(
+    user_name   char(50)    NOT NULL,
+    user_key    char(50)    NOT NULL DEFAULT 123456,
+    PRIMARY KEY (user_name)
+)
+
+
+CREATE TABLE User_Contains(
+    user_id     int         NOT NULL AUTO_INCREMENT,
+    name        char(50)    NOT NULL,
+    key         char(50)    NOT NULL,
+    HMAC_name   char(50)    NOT NULL,
+    HAMC_key    char(50)    NOT NULL,
+    PRIMARY KEY (user_id)
+)
+
+
+
+//创建每个用户信息table
+inline string user_contains_table_str(string user_name){
+    string head = "CREATE TABLE ",
+    string back = "(
+    user_id     int         NOT NULL AUTO_INCREMENT,
+    user_name   char(50)    NOT NULL,
+    user_key    char(50)    NOT NULL,
+    HMAC_name   char(50)    NOT NULL,
+    HAMC_key    char(50)    NOT NULL,
+    PRIMARY KEY (user_id)
+)";
+    return head + user_name + back;
+}
+
